@@ -81,7 +81,7 @@ export default function Services() {
                 <span className="bg-linear-to-r bg-clip-text text-transparent group-hover:translate-x-2 transition-transform duration-300" style={{backgroundImage: service.gradientHex}}>
                   Saiba mais
                 </span>
-                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform duration-300" style={{color: service.gradientHex}} />
+                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform duration-300" style={{color: '#659fcf'}} />
               </div>
             </div>
 
