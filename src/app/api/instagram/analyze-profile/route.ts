@@ -70,11 +70,8 @@ Dados do Perfil:
 - Quantidade de Reels: ${profileData.totalClips}
 - Biografia: "${profileData.biography || "Sem biografia"}"
 
-Foque em:
-1. Identificar pontos de melhoria específicos para clínicas odontológicas
-2. Como a Hawki pode otimizar o perfil para conversão de pacientes
-3. Potencial de crescimento através de tráfego pago
-4. Estratégias específicas de marketing de performance para odontologia
+Foque em explicar como a Hawki pode ajudar, sem falar em pontos de melhoria específicos.
+Sua resposta deve ser curta e nao deve conter emojis ou markdown.
 
 Seja direto, profissional e específico para a situação deste perfil odontológico.`;
 
