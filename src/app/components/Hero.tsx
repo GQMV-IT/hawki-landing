@@ -23,7 +23,7 @@ export default function Hero() {
   };
 
   return (
-    <main className="relative overflow-hidden min-h-screen min-h-[100dvh] flex items-center pt-16" style={{background: 'linear-gradient(135deg, rgba(101, 92, 177, 0.08) 0%, rgba(101, 159, 207, 0.05) 50%, rgba(93, 214, 213, 0.08) 100%)'}}>
+    <main className="relative overflow-hidden min-h-screen flex items-center pt-16" style={{background: 'linear-gradient(135deg, rgba(101, 92, 177, 0.08) 0%, rgba(101, 159, 207, 0.05) 50%, rgba(93, 214, 213, 0.08) 100%)'}}>
       {/* Background Decorative Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-80 h-80 rounded-full mix-blend-multiply filter blur-xl opacity-15 animate-blob" style={{backgroundColor: '#655cb1'}}></div>
@@ -94,9 +94,7 @@ export default function Hero() {
           isScrolled ? 'opacity-0' : 'opacity-100'
         }`}
       >
-        <svg className="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-        </svg>
+        <ArrowDown className="w-6 h-6 text-gray-400" />
       </div>
     </main>
   );
