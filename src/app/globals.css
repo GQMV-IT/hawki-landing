@@ -46,3 +46,43 @@ button {
 .animation-delay-400 {
   animation-delay: 0.4s;
 }
+
+/* Gradient Animation */
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 200% auto;
+  animation: gradient-shift 8s ease-in-out infinite;
+}
+
+/* SVG Line Draw Animation */
+@keyframes line-draw {
+  0% {
+    stroke-dashoffset: 300;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes line-shimmer {
+  0%, 100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.animate-line-draw {
+  stroke-dasharray: 300;
+  stroke-dashoffset: 300;
+  animation: line-draw 1s ease-out forwards, line-shimmer 2s ease-in-out infinite 1s;
+}

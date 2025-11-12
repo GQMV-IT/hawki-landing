@@ -1,6 +1,28 @@
+'use client';
+
+import { useState, useEffect } from 'react';
+
 export default function Hero() {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToProfileAnalysis = () => {
+    const element = document.getElementById('profile-analysis');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
-    <main className="relative overflow-hidden" style={{background: 'linear-gradient(135deg, rgba(101, 92, 177, 0.08) 0%, rgba(101, 159, 207, 0.05) 50%, rgba(93, 214, 213, 0.08) 100%)'}}>
+    <main className="relative overflow-hidden min-h-screen min-h-[100dvh] flex items-center pt-16" style={{background: 'linear-gradient(135deg, rgba(101, 92, 177, 0.08) 0%, rgba(101, 159, 207, 0.05) 50%, rgba(93, 214, 213, 0.08) 100%)'}}>
       {/* Background Decorative Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-80 h-80 rounded-full mix-blend-multiply filter blur-xl opacity-15 animate-blob" style={{backgroundColor: '#655cb1'}}></div>
@@ -8,7 +30,7 @@ export default function Hero() {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 rounded-full mix-blend-multiply filter blur-xl opacity-15 animate-blob animation-delay-4000" style={{backgroundColor: '#5dd6d5'}}></div>
       </div>
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 md:py-8">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16">
         <div className="text-center space-y-6">
           {/* Main Heading */}
           <div className="space-y-6 animate-fade-in-up">
@@ -16,16 +38,22 @@ export default function Hero() {
               Transforme Leads em
               <br />
               <span className="relative inline-block">
-                <span className="bg-linear-to-r bg-clip-text text-transparent" style={{backgroundImage: 'linear-gradient(to right, #655cb1, #5dd6d5)'}}>
+                <span className="bg-clip-text text-transparent animate-gradient" style={{backgroundImage: 'linear-gradient(to right, #655cb1, #659fcf, #5dd6d5, #659fcf, #655cb1)'}}>
                   Resultados Reais
                 </span>
                 <svg className="absolute -bottom-2 left-0 w-full" height="12" viewBox="0 0 300 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M2 10C50 4 100 2 150 6C200 10 250 8 298 4" stroke="url(#gradient)" strokeWidth="3" strokeLinecap="round"/>
+                  <path className="animate-line-draw" d="M2 10C50 4 100 2 150 6C200 10 250 8 298 4" stroke="url(#gradient-animated)" strokeWidth="3" strokeLinecap="round"/>
                   <defs>
-                    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" stopColor="#655cb1"/>
-                      <stop offset="50%" stopColor="#659fcf"/>
-                      <stop offset="100%" stopColor="#5dd6d5"/>
+                    <linearGradient id="gradient-animated" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stopColor="#655cb1">
+                        <animate attributeName="offset" values="0;0.15;0" dur="8s" repeatCount="indefinite" />
+                      </stop>
+                      <stop offset="50%" stopColor="#659fcf">
+                        <animate attributeName="offset" values="0.5;0.65;0.5" dur="8s" repeatCount="indefinite" />
+                      </stop>
+                      <stop offset="100%" stopColor="#5dd6d5">
+                        <animate attributeName="offset" values="1;0.85;1" dur="8s" repeatCount="indefinite" />
+                      </stop>
                     </linearGradient>
                   </defs>
                 </svg>
@@ -49,7 +77,11 @@ export default function Hero() {
               </span>
             </button>
             
-            <button className="group px-8 py-3 bg-white text-gray-900 text-lg font-bold rounded-xl border-2 transition-all duration-300 shadow-md hover:shadow-lg flex items-center gap-2" style={{borderColor: '#659fcf'}}>
+            <button 
+              onClick={scrollToProfileAnalysis}
+              className="group px-8 py-3 bg-white text-gray-900 text-lg font-bold rounded-xl border-2 transition-all duration-300 shadow-md hover:shadow-lg flex items-center gap-2" 
+              style={{borderColor: '#659fcf'}}
+            >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -58,54 +90,18 @@ export default function Hero() {
             </button>
           </div>
 
-          {/* Social Proof / Stats */}
-          <div className="pt-10 animate-fade-in-up animation-delay-400">
-            <p className="text-xs text-gray-500 font-medium uppercase tracking-wider mb-6">
-              Resultados Comprovados
-            </p>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 max-w-4xl mx-auto">
-              <div className="group">
-                <div className="bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100">
-                  <div className="text-2xl md:text-3xl font-extrabold mb-1" style={{color: '#655cb1'}}>
-                    +R$500K
-                  </div>
-                  <div className="text-xs md:text-sm text-gray-600 font-medium">
-                    Investidos em<br />Tráfego Pago
-                  </div>
-                </div>
-              </div>
-
-              <div className="group">
-                <div className="bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100">
-                  <div className="text-2xl md:text-3xl font-extrabold mb-1" style={{color: '#659fcf'}}>
-                    +R$10M
-                  </div>
-                  <div className="text-xs md:text-sm text-gray-600 font-medium">
-                    Faturados pelos<br />Nossos Clientes
-                  </div>
-                </div>
-              </div>
-
-              <div className="group">
-                <div className="bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100">
-                  <div className="text-2xl md:text-3xl font-extrabold mb-1" style={{color: '#5dd6d5'}}>
-                    +2 Anos
-                  </div>
-                  <div className="text-xs md:text-sm text-gray-600 font-medium">
-                    Atuando no Mercado<br />de Performance
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Scroll Indicator */}
-          <div className="pt-6 animate-bounce">
-            <svg className="w-6 h-6 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-            </svg>
-          </div>
         </div>
+      </div>
+
+      {/* Scroll Indicator - Positioned at bottom */}
+      <div 
+        className={`absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce transition-opacity duration-300 ${
+          isScrolled ? 'opacity-0' : 'opacity-100'
+        }`}
+      >
+        <svg className="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+        </svg>
       </div>
     </main>
   );

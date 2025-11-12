@@ -1,4 +1,4 @@
-import { Header, Hero, About, Services, ProfileAnalysis } from "./components";
+import { Header, Hero, About, Services, ProfileAnalysis, Results } from "./components";
 
 export default function Home() {
   return (
@@ -6,6 +6,7 @@ export default function Home() {
       <Header />
       <Hero />
       <ProfileAnalysis />
+      <Results />
       <About />
       <Services />
     </div>
