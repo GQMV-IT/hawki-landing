@@ -1,3 +1,5 @@
+import { ArrowDown, ArrowRight, Eye } from "lucide-react";
+
 export default function Hero() {
   return (
     <main className="relative overflow-hidden" style={{background: 'linear-gradient(135deg, rgba(101, 92, 177, 0.08) 0%, rgba(101, 159, 207, 0.05) 50%, rgba(93, 214, 213, 0.08) 100%)'}}>
@@ -43,17 +45,12 @@ export default function Hero() {
             <button className="group relative px-8 py-3 text-white text-lg font-bold rounded-xl shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 overflow-hidden" style={{background: 'linear-gradient(to right, #655cb1, #659fcf)'}}>
               <span className="relative z-10 flex items-center gap-2">
                 Quero Aumentar Minhas Vendas
-                <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </span>
             </button>
             
             <button className="group px-8 py-3 bg-white text-gray-900 text-lg font-bold rounded-xl border-2 transition-all duration-300 shadow-md hover:shadow-lg flex items-center gap-2" style={{borderColor: '#659fcf'}}>
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
+              <Eye className="w-5 h-5" />
               Analise o meu perfil
             </button>
           </div>
@@ -101,9 +98,7 @@ export default function Hero() {
 
           {/* Scroll Indicator */}
           <div className="pt-6 animate-bounce">
-            <svg className="w-6 h-6 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-            </svg>
+            <ArrowDown className="w-6 h-6 mx-auto text-gray-400" />
           </div>
         </div>
       </div>

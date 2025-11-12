@@ -1,39 +1,32 @@
+import { Building2, CircleCheck, Clock4, Target, TrendingUp, UserRound } from "lucide-react";
 import { Section, MotionWrapper } from "./ui";
 
 export default function About() {
     const keyFeatures = [
         {
             icon: (
-                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
+                <CircleCheck className="w-8 h-8" />
             ),
             title: "Metodologia Comprovada",
             description: "Processos testados e validados"
         },
         {
             icon: (
-                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                </svg>
+                <TrendingUp className="w-8 h-8" />
             ),
             title: "Resultados Mensuráveis",
             description: "Acompanhamento em tempo real"
         },
         {
             icon: (
-                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                </svg>
+                <UserRound className="w-8 h-8" />
             ),
             title: "Equipe Especializada",
             description: "Profissionais experientes"
         },
         {
             icon: (
-                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
+                <Clock4 className="w-8 h-8" />
             ),
             title: "Suporte Contínuo",
             description: "Acompanhamento dedicado"
@@ -62,9 +55,7 @@ export default function About() {
                     {/* Mission Card */}
                     <div className="rounded-2xl p-8 hover:shadow-lg transition-shadow duration-300" style={{background: 'linear-gradient(to bottom right, rgba(101, 92, 177, 0.1), rgba(93, 214, 213, 0.1))'}}>
                         <div className="w-12 h-12 rounded-lg flex items-center justify-center mb-4" style={{background: 'linear-gradient(to right, #655cb1, #659fcf)'}}>
-                            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                            </svg>
+                            <Building2 className="w-6 h-6 text-white" />
                         </div>
                         <h3 className="text-2xl font-bold text-gray-900 mb-4">Nossa Missão</h3>
                         <p className="text-gray-600 leading-relaxed">
@@ -76,10 +67,7 @@ export default function About() {
                     {/* Vision Card */}
                     <div className="rounded-2xl p-8 hover:shadow-lg transition-shadow duration-300" style={{background: 'linear-gradient(to bottom right, rgba(101, 159, 207, 0.1), rgba(93, 214, 213, 0.1))'}}>
                         <div className="w-12 h-12 rounded-lg flex items-center justify-center mb-4" style={{background: 'linear-gradient(to right, #659fcf, #5dd6d5)'}}>
-                            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                            </svg>
+                            <Target className="w-6 h-6 text-white" />
                         </div>
                         <h3 className="text-2xl font-bold text-gray-900 mb-4">Nossa Visão</h3>
                         <p className="text-gray-600 leading-relaxed">
