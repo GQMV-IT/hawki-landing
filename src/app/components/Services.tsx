@@ -1,4 +1,4 @@
-import { Section } from "./ui";
+import { Section, MotionWrapper } from "./ui";
 
 export default function Services() {
   const services = [
@@ -42,22 +42,25 @@ export default function Services() {
 
   return (
     <Section id="services" className="bg-linear-to-b from-gray-50 to-white">
-      <div className="text-center mb-16">
-        <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 tracking-tight mb-6">
-          Nossos Serviços
-        </h2>
-        <div className="w-24 h-1 mx-auto mb-8" style={{background: 'linear-gradient(to right, #655cb1, #5dd6d5)'}}></div>
-        <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
-          Soluções completas de marketing digital para impulsionar o crescimento do seu negócio
-        </p>
-      </div>
+      <MotionWrapper>
+        <div className="text-center mb-16">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 tracking-tight mb-6">
+            Nossos Serviços
+          </h2>
+          <div className="w-24 h-1 mx-auto mb-8" style={{background: 'linear-gradient(to right, #655cb1, #5dd6d5)'}}></div>
+          <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
+            Soluções completas de marketing digital para impulsionar o crescimento do seu negócio
+          </p>
+        </div>
+      </MotionWrapper>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {services.map((service, index) => (
-          <div 
-            key={index}
-            className="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden"
-          >
+      <MotionWrapper delay={0.2}>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {services.map((service, index) => (
+            <div 
+              key={index}
+              className="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden"
+            >
             {/* Gradient Background on Hover */}
             <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{backgroundColor: service.bgGradient}}></div>
             
@@ -98,8 +101,9 @@ export default function Services() {
             {/* Decorative Element */}
             <div className="absolute -bottom-2 -right-2 w-24 h-24 opacity-10 rounded-full blur-2xl group-hover:opacity-20 transition-opacity duration-300" style={{background: service.gradientHex}}></div>
           </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      </MotionWrapper>
     </Section>
   );
 }
