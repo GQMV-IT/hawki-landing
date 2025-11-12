@@ -8,6 +8,13 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      colors: {
+        primary: {
+          dark: '#655cb1',    // Roxo/Azul escuro
+          DEFAULT: '#659fcf', // Azul médio
+          light: '#5dd6d5',   // Azul claro/Ciano
+        },
+      },
       animation: {
         'blob': 'blob 7s infinite',
         'fade-in-down': 'fadeInDown 0.8s ease-out',
