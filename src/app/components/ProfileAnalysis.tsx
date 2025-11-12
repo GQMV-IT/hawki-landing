@@ -2,22 +2,102 @@
 
 import { Section, MotionWrapper } from "./ui";
 import { useState } from 'react';
+import { getUserInfo, analyzeProfileWithAI, InstagramUserInfo } from '@/services';
 
 export default function ProfileAnalysis() {
     const [username, setUsername] = useState('');
     const [isAnalyzing, setIsAnalyzing] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+    const [userInfo, setUserInfo] = useState<InstagramUserInfo | null>(null);
+    const [analysis, setAnalysis] = useState<string>('');
+    const [isStreaming, setIsStreaming] = useState(false);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsAnalyzing(true);
+        setError(null);
+        setAnalysis('');
+        setUserInfo(null);
         
-        // Simulate analysis
-        setTimeout(() => {
-            console.log('Analyzing profile:', username);
+        try {
+            const data = await getUserInfo(username);
+            setUserInfo(data);
+
+            setIsStreaming(true);
+            await analyzeProfileWithAI(data, (chunk) => {
+                setAnalysis((prev) => prev + chunk);
+            });
+            setIsStreaming(false);
+        } catch (err) {
+            const errorMessage = err instanceof Error ? err.message : 'Failed to fetch profile';
+            setError(errorMessage);
+            setIsStreaming(false);
+        } finally {
             setIsAnalyzing(false);
-        }, 2000);
+        }
     };
 
+    if (userInfo && (analysis || isStreaming)) {
+        return (
+            <Section id="profile-analysis" className="bg-white">
+                <MotionWrapper>
+                    <div className="max-w-4xl mx-auto">
+                        {/* Profile Header */}
+                        <div className="text-center mb-8">
+                            <div className="flex items-center justify-center gap-4 mb-4">
+                                {userInfo.profile_pic_url && (
+                                    <img 
+                                        src={`/api/proxy-image?url=${encodeURIComponent(userInfo.profile_pic_url)}`}
+                                        alt={userInfo.username}
+                                        className="w-16 h-16 rounded-full border-2"
+                                        style={{ borderColor: '#659fcf' }}
+                                        onError={(e) => {
+                                            // If image fails to load, hide it
+                                            e.currentTarget.style.display = 'none';
+                                        }}
+                                    />
+                                )}
+                                <div className="text-left">
+                                    <h3 className="text-2xl font-bold text-gray-900">
+                                        @{userInfo.username}
+                                        {userInfo.is_verified && <span className="ml-2">✅</span>}
+                                    </h3>
+                                    <p className="text-gray-600">{userInfo.full_name}</p>
+                                </div>
+                            </div>
+                            <div className="flex justify-center gap-6 text-sm text-gray-600">
+                                <div><strong>{userInfo.follower_count.toLocaleString()}</strong> seguidores</div>
+                                <div><strong>{userInfo.media_count}</strong> posts</div>
+                            </div>
+                        </div>
+
+                        {/* AI Analysis */}
+                        <div className="bg-linear-to-br from-gray-50 to-white rounded-2xl p-8 shadow-lg border border-gray-100">
+                            <div className="flex items-center justify-start mb-6">
+                                {isStreaming && (
+                                    <div className="flex items-center gap-2 text-blue-600">
+                                        <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                        </svg>
+                                        <span className="text-sm">Analisando...</span>
+                                    </div>
+                                )}
+                            </div>
+
+                            {/* Streaming Text */}
+                            <div className="prose prose-lg max-w-none text-gray-800 whitespace-pre-wrap">
+                                {analysis}
+                                {isStreaming && <span className="inline-block w-2 h-5 bg-blue-600 animate-pulse ml-1"></span>}
+                            </div>
+                        </div>
+                    </div>
+                </MotionWrapper>
+            </Section>
+        );
+    }
+
+    // Show form
     return (
         <Section id="profile-analysis" className="bg-white">
             <MotionWrapper>
@@ -76,6 +156,13 @@ export default function ProfileAnalysis() {
                             )}
                         </button>
                     </form>
+
+                    {/* Error Message */}
+                    {error && (
+                        <div className="mt-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+                            <p className="text-red-600 font-medium">{error}</p>
+                        </div>
+                    )}
 
                     {/* Trust Indicators */}
                     <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-sm text-gray-500">

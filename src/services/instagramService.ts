@@ -90,3 +90,54 @@ export const getUserInfo = async (username: string): Promise<InstagramUserInfo> 
     throw new Error('Failed to fetch profile information');
   }
 };
+
+/**
+ * Analyze Instagram profile with AI streaming response
+ * @param userInfo Instagram user info object
+ * @param onChunk Callback function to handle each text chunk
+ * @returns Promise that resolves when streaming is complete
+ */
+export const analyzeProfileWithAI = async (
+  userInfo: InstagramUserInfo,
+  onChunk: (text: string) => void
+): Promise<void> => {
+  try {
+    const response = await fetch('/api/instagram/analyze-profile', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ userInfo }),
+    });
+
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.error || 'Failed to analyze profile');
+    }
+
+    // Handle streaming response
+    const reader = response.body?.getReader();
+    const decoder = new TextDecoder();
+
+    if (!reader) {
+      throw new Error('No response body');
+    }
+
+    while (true) {
+      const { done, value } = await reader.read();
+      
+      if (done) {
+        break;
+      }
+
+      const chunk = decoder.decode(value, { stream: true });
+      onChunk(chunk);
+    }
+
+  } catch (error) {
+    if (error instanceof Error) {
+      throw error;
+    }
+    throw new Error('Failed to analyze profile with AI');
+  }
+};
