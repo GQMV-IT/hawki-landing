@@ -25,6 +25,11 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Make buttons have pointer cursor by default */
+button {
+  cursor: pointer;
+}
+
 /* Animation Delays */
 .animation-delay-2000 {
   animation-delay: 2s;
