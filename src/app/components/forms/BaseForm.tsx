@@ -4,11 +4,12 @@ import { useState } from 'react';
 
 interface BaseFormProps {
     onSubmit: (data: { name: string; phone: string }) => void;
+    initialData?: { name: string; phone: string };
 }
 
-export default function BaseForm({ onSubmit }: BaseFormProps) {
-    const [name, setName] = useState('');
-    const [phone, setPhone] = useState('+55');
+export default function BaseForm({ onSubmit, initialData }: BaseFormProps) {
+    const [name, setName] = useState(initialData?.name || '');
+    const [phone, setPhone] = useState(initialData?.phone || '+55');
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -74,7 +75,7 @@ export default function BaseForm({ onSubmit }: BaseFormProps) {
                 style={{ background: 'linear-gradient(135deg, #655cb1, #659fcf)' }}
                 disabled={!name || !phone}
             >
-                Enviar
+                Avançar
             </button>
         </form>
     );
