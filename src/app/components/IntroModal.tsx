@@ -22,10 +22,16 @@ export default function IntroModal() {
         setStep(1);
     }
 
-    const submitInstagramData = (data: { username: string }) => {
+    const submitInstagramData = (data: { username: string; userInfo: any }) => {
         console.log('Instagram data:', data);
-        console.log('Complete user data:', { ...baseFormData, ...data });
+        console.log('Complete user data:', { 
+            ...baseFormData, 
+            instagram: data.username,
+            instagramInfo: data.userInfo
+        });
 
+        // Here you can send the complete data to your backend or process it
+        // For now, we'll just close the modal
         setIsModalOpen(false);
     }
 
