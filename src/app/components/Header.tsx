@@ -15,25 +15,6 @@ export default function Header() {
             />
             <span className="text-xl font-bold text-gray-900">Hawki</span>
           </div>
-
-          <nav className="hidden md:flex items-center gap-8">
-            <a
-              href="#about"
-              className="text-gray-700 hover:text-gray-900 transition-colors"
-            >
-              Sobre nós
-            </a>
-            <a
-              href="#services"
-              className="text-gray-700 hover:text-gray-900 transition-colors"
-            >
-              Serviços
-            </a>
-            {/* TODO: Add contact section for link */}
-            {/* <a href="#contact" className="text-gray-700 hover:text-gray-900 transition-colors">
-              Contato
-            </a>*/}
-          </nav>
         </div>
       </div>
     </header>
