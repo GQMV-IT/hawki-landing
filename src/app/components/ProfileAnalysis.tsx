@@ -69,7 +69,9 @@ export default function ProfileAnalysis() {
             analysis={analysis}
             isStreaming={isStreaming}
           />
-          <CTAButton className="mt-4">Alavanque sua clínica</CTAButton>
+          <CTAButton utmContent="after_analysis" className="mt-4">
+            Alavanque sua clínica
+          </CTAButton>
         </div>
       </MotionWrapper>
     </Section>
