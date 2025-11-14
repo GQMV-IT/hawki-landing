@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { BaseUserData } from '@/store/userStore';
+import { PhoneInput } from '../ui';
 
 export type BaseFormData = Omit<BaseUserData, 'instagram'>;
 
@@ -12,7 +13,7 @@ interface BaseFormProps {
 
 export default function BaseForm({ onSubmit, initialData }: BaseFormProps) {
     const [name, setName] = useState(initialData?.name || '');
-    const [phone, setPhone] = useState(initialData?.phone || '+55');
+    const [phone, setPhone] = useState(initialData?.phone || '');
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -61,14 +62,12 @@ export default function BaseForm({ onSubmit, initialData }: BaseFormProps) {
                 >
                     Qual o seu número?
                 </label>
-                <input
+                <PhoneInput
                     id="phone"
-                    type="tel"
                     value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    placeholder="1 (702) 123-4567"
+                    onChange={setPhone}
+                    placeholder="(11) 98765-4321"
                     required
-                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-[#659fcf] focus:outline-none transition-colors"
                 />
             </div>
 
@@ -76,7 +75,7 @@ export default function BaseForm({ onSubmit, initialData }: BaseFormProps) {
                 type="submit"
                 className="w-full px-6 py-3 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                 style={{ background: 'linear-gradient(135deg, #655cb1, #659fcf)' }}
-                disabled={!name || !phone}
+                disabled={!name || !phone || phone.replace(/\D/g, '').length < 10}
             >
                 Avançar
             </button>
