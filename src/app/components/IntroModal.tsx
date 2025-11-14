@@ -11,7 +11,7 @@ export default function IntroModal() {
 
   const setBaseData = useUserStore((state) => state.setBaseData);
   const setInstagramInfo = useUserStore((state) => state.setInstagramInfo);
-  const { name, phone, instagram } = useUserStore();
+  const { name, phone } = useUserStore();
 
   const baseData = useMemo(() => ({ name: name!, phone: phone! }), [name, phone]);
 
