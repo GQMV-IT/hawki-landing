@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { extractDDD, getLocationFromDDD, generateLocationMessage, Location } from '@/services/locationService';
+import { extractDDD, getLocationFromDDD, generateLocationMessage, Location, extractCountryCode } from '@/services/locationService';
 
 interface UseLocationMessageResult {
   location: Location | null;
@@ -21,16 +21,17 @@ export const useLocationMessage = (phone: string): UseLocationMessageResult => {
 
   useEffect(() => {
     const ddd = extractDDD(phone);
-    
+    const countryCode = extractCountryCode(phone);
+
     // Reset if no DDD
-    if (!ddd) {
+    if (!ddd || !countryCode) {
       setLocation(null);
       setMessage('');
       setError(null);
       return;
     }
 
-    const locationInfo = getLocationFromDDD(ddd);
+    const locationInfo = getLocationFromDDD(phone);
     setLocation(locationInfo);
 
     // Only generate message if we have a valid location
@@ -40,7 +41,7 @@ export const useLocationMessage = (phone: string): UseLocationMessageResult => {
     }
 
     // Don't regenerate if we already have a message for this DDD
-    if (message && location?.ddd === ddd) {
+    if (message && location?.country === countryCode && location?.ddd === ddd) {
       return;
     }
 

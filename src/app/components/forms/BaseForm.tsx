@@ -82,16 +82,12 @@ export default function BaseForm({ onSubmit, initialData }: BaseFormProps) {
                                 <p className="text-xs font-semibold text-gray-700 mb-1">
                                     {location.city} - {location.state}
                                 </p>
-                                {isLoading ? (
-                                    <div className="flex items-center gap-2 text-xs text-gray-500">
-                                        <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
-                                        Gerando mensagem personalizada...
-                                    </div>
-                                ) : message ? (
+
+                                {message && (
                                     <p className="text-xs text-gray-600 leading-relaxed">
                                         {message}
                                     </p>
-                                ) : null}
+                                )}
                             </div>
                         </div>
                     </div>
