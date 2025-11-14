@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { BaseUserData } from '@/store/userStore';
 import { PhoneInput } from '../ui';
+import { useLocationMessage } from '@/hooks/useLocationMessage';
 
 export type BaseFormData = Omit<BaseUserData, 'instagram'>;
 
@@ -14,6 +15,8 @@ interface BaseFormProps {
 export default function BaseForm({ onSubmit, initialData }: BaseFormProps) {
     const [name, setName] = useState(initialData?.name || '');
     const [phone, setPhone] = useState(initialData?.phone || '');
+    
+    const { location, message, isLoading } = useLocationMessage(phone);
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -69,6 +72,30 @@ export default function BaseForm({ onSubmit, initialData }: BaseFormProps) {
                     placeholder="(11) 98765-4321"
                     required
                 />
+                
+                {/* Location-specific message */}
+                {location && (
+                    <div className="mt-3 p-3 rounded-lg bg-gradient-to-r from-purple-50 to-blue-50 border border-purple-100">
+                        <div className="flex items-start gap-2">
+                            <span className="text-lg">📍</span>
+                            <div className="flex-1">
+                                <p className="text-xs font-semibold text-gray-700 mb-1">
+                                    {location.city} - {location.state}
+                                </p>
+                                {isLoading ? (
+                                    <div className="flex items-center gap-2 text-xs text-gray-500">
+                                        <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
+                                        Gerando mensagem personalizada...
+                                    </div>
+                                ) : message ? (
+                                    <p className="text-xs text-gray-600 leading-relaxed">
+                                        {message}
+                                    </p>
+                                ) : null}
+                            </div>
+                        </div>
+                    </div>
+                )}
             </div>
 
             <button
