@@ -1,10 +1,9 @@
 'use client';
 
 import { useMemo, useState, useEffect } from 'react';
-import { BaseForm, InstagramForm } from './forms';
-import { InstagramUserInfo } from '@/services';
-import { InstagramUserData, UserData, useUserStore } from '@/store/userStore';
+import { InstagramUserData, useUserStore } from '@/store/userStore';
 import { BaseFormData } from './forms/BaseForm';
+import { BaseForm, InstagramForm } from './forms';
 
 export default function IntroModal() {
   const [isModalOpen, setIsModalOpen] = useState(true);
@@ -56,18 +55,25 @@ export default function IntroModal() {
   }
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto backdrop-blur-sm">
-      <div className="flex min-h-screen items-center justify-center p-4">
-        {/* Overlay with backdrop blur */}
-        <div className="fixed inset-0 bg-black/30 transition-opacity" />
+    <div className="fixed inset-0 z-50">
+      {/* Overlay with backdrop blur */}
+      <div className="fixed inset-0 bg-black/30 backdrop-blur-sm" />
 
-        {/* Modal Content - Glassmorphism */}
-        <div className="relative bg-white/80 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/20 max-w-lg w-full p-6 z-10 text-gray-600">
-          {step === 0 && <BaseForm onSubmit={submitBaseData} initialData={baseData} />}
+      {/* Modal Container */}
+      <div className="fixed inset-0 overflow-y-auto">
+        <div className="flex min-h-full items-center justify-center p-4">
+          {/* Modal Content - Glassmorphism */}
+          <div className="relative bg-white/80 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/20 max-w-lg w-full p-6 text-gray-600">
+            {step === 0 && <BaseForm onSubmit={submitBaseData} initialData={baseData} />}
 
-          {step === 1 && instagram && (
-            <InstagramForm onSubmit={submitInstagramData} baseFormData={baseData} onBack={goBack} />
-          )}
+            {step === 1 && instagram && (
+              <InstagramForm
+                onSubmit={submitInstagramData}
+                baseFormData={baseData}
+                onBack={goBack}
+              />
+            )}
+          </div>
         </div>
       </div>
     </div>
