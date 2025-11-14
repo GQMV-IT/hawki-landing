@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { ArrowDown, ArrowRight, Eye } from "lucide-react";
 import { useUserStore } from '@/store';
+import { CTAButton } from './ui';
 
 export default function Hero() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -16,13 +17,6 @@ export default function Hero() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const scrollToProfileAnalysis = () => {
-    const element = document.getElementById('profile-analysis');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  };
 
   return (
     <main className="relative overflow-hidden min-h-screen flex items-center pt-16" style={{background: 'linear-gradient(135deg, rgba(101, 92, 177, 0.08) 0%, rgba(101, 159, 207, 0.05) 50%, rgba(93, 214, 213, 0.08) 100%)'}}>
@@ -71,21 +65,12 @@ export default function Hero() {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-6 animate-fade-in-up animation-delay-200">
-            <button className="group relative px-8 py-3 text-white text-lg font-bold rounded-xl shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 overflow-hidden" style={{background: 'linear-gradient(to right, #655cb1, #659fcf)'}}>
+            <CTAButton>
               <span className="relative z-10 flex items-center gap-2">
                 Quero Aumentar Minhas Vendas
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </span>
-            </button>
-            
-            <button 
-              onClick={scrollToProfileAnalysis}
-              className="group px-8 py-3 bg-white text-gray-900 text-lg font-bold rounded-xl border-2 transition-all duration-300 shadow-md hover:shadow-lg flex items-center gap-2" 
-              style={{borderColor: '#659fcf'}}
-            >  
-              <Eye className="w-5 h-5" />
-              Analise o meu perfil
-            </button>
+            </CTAButton>
           </div>
         </div>
       </div>

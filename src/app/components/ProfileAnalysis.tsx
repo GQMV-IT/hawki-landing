@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { analyzeProfileWithAI } from '@/services';
 import { useUserStore } from '@/store/userStore';
-import { Section, MotionWrapper } from "./ui";
+import { Section, MotionWrapper, CTAButton } from "./ui";
 import ProfileAnalysisResult from './ProfileAnalysisResult';
 
 export default function ProfileAnalysis() {
@@ -65,11 +65,16 @@ export default function ProfileAnalysis() {
     return (
         <Section className="bg-white">
             <MotionWrapper>
-                <ProfileAnalysisResult 
-                    userInfo={instagramInfo}
-                    analysis={analysis}
-                    isStreaming={isStreaming}
-                />
+                <div className="max-w-3xl mx-auto flex flex-col items-center gap-8">
+                    <ProfileAnalysisResult
+                        userInfo={instagramInfo}
+                        analysis={analysis}
+                        isStreaming={isStreaming}
+                    />
+                    <CTAButton className="mt-4">
+                        Começar agora
+                    </CTAButton>
+                </div>
             </MotionWrapper>
         </Section>
     );
