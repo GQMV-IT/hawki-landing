@@ -14,7 +14,7 @@ export default function CTAButton({ children, className = '', utmContent }: CTAB
 
   // Construct Typeform URL with hidden fields
   const typeformUrl = useMemo(() => {
-    const baseUrl = 'https://hawki.typeform.com/direto';
+    const baseUrl = 'https://hawki.pro.typeform.com/to/fPcFisqB';
     const params = new URLSearchParams({
       utm_source: 'landing',
       utm_medium: 'cta',
