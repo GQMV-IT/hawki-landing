@@ -66,7 +66,7 @@ export default function IntroModal() {
           <div className="relative bg-white/80 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/20 max-w-lg w-full p-6 text-gray-600">
             {step === 0 && <BaseForm onSubmit={submitBaseData} initialData={baseData} />}
 
-            {step === 1 && instagram && (
+            {step === 1 && (
               <InstagramForm
                 onSubmit={submitInstagramData}
                 baseFormData={baseData}
