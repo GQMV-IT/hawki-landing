@@ -1,20 +1,12 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import {
-  Header,
-  Hero,
-  About,
-  Services,
-  ProfileAnalysis,
-  Results,
-  IntroModal,
-} from "./components";
+import { Header, Hero, About, Services, ProfileAnalysis, Results, IntroModal } from './components';
 import { useUserStore } from '@/store/userStore';
 import { getUserInfo } from '@/services';
 
 export default function Home() {
-  const { setUserData, hasUserData } = useUserStore();
+  const { setUserData, hasUserData, instagram } = useUserStore();
   const [isLoadingStoredData, setIsLoadingStoredData] = useState(true);
 
   // Load data from localStorage on mount
@@ -36,7 +28,6 @@ export default function Home() {
           instagram: userData.instagram,
           instagramInfo: instagramInfo,
         });
-
       } catch (error) {
         console.error('Error loading stored user data:', error);
       } finally {
@@ -47,6 +38,13 @@ export default function Home() {
     loadStoredUserData();
   }, [setUserData]);
 
+  // Scroll to top when user data changes (after initial load)
+  useEffect(() => {
+    if (!isLoadingStoredData && instagram) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [instagram, isLoadingStoredData]);
+
   return (
     <div className="min-h-screen bg-white">
       <Header />
@@ -56,9 +54,7 @@ export default function Home() {
       <About />
       <Services />
 
-      {!hasUserData() && (
-        <IntroModal />
-      )}
+      {!hasUserData() && <IntroModal />}
     </div>
   );
 }
