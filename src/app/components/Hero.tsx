@@ -2,9 +2,11 @@
 
 import { useState, useEffect } from 'react';
 import { ArrowDown, ArrowRight, Eye } from "lucide-react";
+import { useUserStore } from '@/store';
 
 export default function Hero() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const { name } = useUserStore();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,7 +38,7 @@ export default function Hero() {
           {/* Main Heading */}
           <div className="space-y-6 animate-fade-in-up">
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-5xl font-extrabold text-gray-900 tracking-tight leading-tight">
-              Transforme Leads em
+              {name}, transforme Leads em
               <br />
               <span className="relative inline-block">
                 <span className="bg-clip-text text-transparent animate-gradient" style={{backgroundImage: 'linear-gradient(to right, #655cb1, #659fcf, #5dd6d5, #659fcf, #655cb1)'}}>

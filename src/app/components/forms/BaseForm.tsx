@@ -1,10 +1,13 @@
 'use client';
 
 import { useState } from 'react';
+import { BaseUserData } from '@/store/userStore';
+
+export type BaseFormData = Omit<BaseUserData, 'instagram'>;
 
 interface BaseFormProps {
-    onSubmit: (data: { name: string; phone: string }) => void;
-    initialData?: { name: string; phone: string };
+    onSubmit: (data: BaseFormData) => void;
+    initialData?: BaseFormData;
 }
 
 export default function BaseForm({ onSubmit, initialData }: BaseFormProps) {

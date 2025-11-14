@@ -1,37 +1,34 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useMemo, useState } from 'react';
 import { BaseForm, InstagramForm } from './forms';
+import { InstagramUserInfo } from '@/services';
+import { InstagramUserData, UserData, useUserStore } from '@/store/userStore';
+import { BaseFormData } from './forms/BaseForm';
 
-interface BaseFormData {
-    name: string;
-    phone: string;
-}
 
 export default function IntroModal() {
     const [isModalOpen, setIsModalOpen] = useState(true);
     const [step, setStep] = useState(0);
-    const [baseFormData, setBaseFormData] = useState<BaseFormData | null>(null);
 
+    const setBaseData = useUserStore((state) => state.setBaseData);
+    const setInstagramInfo = useUserStore((state) => state.setInstagramInfo);
+    const { name, phone, instagram } = useUserStore();
+
+    const baseData = useMemo(() => ({ name: name!, phone: phone! }), [name, phone]);
 
     const submitBaseData = (data: BaseFormData) => {
-        console.log('Base form data:', data);
-        localStorage.setItem('baseData', JSON.stringify(data));
-        setBaseFormData(data);
-
+        setBaseData(data);
         setStep(1);
     }
 
-    const submitInstagramData = (data: { username: string; userInfo: any }) => {
-        console.log('Instagram data:', data);
-        console.log('Complete user data:', { 
-            ...baseFormData, 
-            instagram: data.username,
-            instagramInfo: data.userInfo
-        });
+    const submitInstagramData = (data: InstagramUserData) => {
+        localStorage.setItem('userData', JSON.stringify({
+            ...baseData,
+            instagram: data.instagram,
+        }));
+        setInstagramInfo(data);
 
-        // Here you can send the complete data to your backend or process it
-        // For now, we'll just close the modal
         setIsModalOpen(false);
     }
 
@@ -51,11 +48,17 @@ export default function IntroModal() {
 
                 {/* Modal Content - Glassmorphism */}
                 <div className="relative bg-white/80 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/20 max-w-lg w-full p-6 z-10 text-gray-600">
-                    {step === 0 && <BaseForm onSubmit={submitBaseData} initialData={baseFormData || undefined} />}
-                    {step === 1 && baseFormData && (
+                    {step === 0 && (
+                        <BaseForm
+                            onSubmit={submitBaseData}
+                            initialData={baseData}
+                        />
+                    )}
+
+                    {step === 1 && instagram && (
                         <InstagramForm 
                             onSubmit={submitInstagramData} 
-                            baseFormData={baseFormData}
+                            baseFormData={baseData}
                             onBack={goBack}
                         />
                     )}

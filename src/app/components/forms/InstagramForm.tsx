@@ -4,9 +4,10 @@
 import { useState } from 'react';
 import { ArrowLeft, Loader2, Instagram } from 'lucide-react';
 import { getUserInfo, InstagramUserInfo } from '@/services';
+import { InstagramUserData } from '@/store/userStore';
 
 interface InstagramFormProps {
-    onSubmit: (data: { username: string; userInfo: InstagramUserInfo }) => void;
+    onSubmit: (data: InstagramUserData) => void;
     onBack: () => void;
     baseFormData: {
         name: string;
@@ -38,7 +39,7 @@ export default function InstagramForm({ onSubmit, onBack, baseFormData }: Instag
 
     const handleConfirm = () => {
         if (userInfo) {
-            onSubmit({ username, userInfo });
+            onSubmit({ instagram: username, instagramInfo: userInfo });
         }
     }
 
