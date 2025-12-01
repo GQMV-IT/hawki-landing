@@ -102,8 +102,8 @@ export async function POST(request: NextRequest) {
                     controller.enqueue(encoder.encode(content));
                   }
                 } catch (e) {
-                  // Skip invalid JSON
-                  console.error('Failed to parse chunk:', e);
+                  // Skip invalid JSON chunks - this is expected during streaming
+                  // when chunks arrive incomplete (mid-string)
                 }
               }
             }

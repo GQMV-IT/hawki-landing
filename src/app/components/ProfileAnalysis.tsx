@@ -65,7 +65,6 @@ export default function ProfileAnalysis() {
       <MotionWrapper>
         <div className="max-w-3xl mx-auto flex flex-col items-center gap-8">
           <ProfileAnalysisResult
-            userInfo={instagramInfo}
             analysis={analysis}
             isStreaming={isStreaming}
           />
