@@ -1,6 +1,6 @@
 'use client';
 
-import { CheckCircle2, Rocket, Target, ArrowRight } from 'lucide-react';
+import { CheckCircle2, Target, ArrowRight } from 'lucide-react';
 import { Section, MotionWrapper, CTAButton } from './ui';
 
 export default function FinalCTA() {
@@ -57,17 +57,6 @@ export default function FinalCTA() {
             </div>
           </div>
 
-          {/* CTA Button */}
-          <div className="flex justify-center">
-            <CTAButton utmContent="final_cta">
-              <span className="flex items-center gap-2 text-sm sm:text-base">
-                <Rocket className="w-4 h-4 sm:w-5 sm:h-5" />
-                AGENDAR AVALIAÇÃO
-                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
-              </span>
-            </CTAButton>
-          </div>
-
           {/* Urgência Final */}
           <div className="bg-gradient-to-r from-red-500/20 to-orange-500/20 rounded-2xl p-6 sm:p-8 border border-red-400/30 shadow-xl">
             <div className="text-center space-y-3 sm:space-y-4">
@@ -91,7 +80,7 @@ export default function FinalCTA() {
             <CTAButton utmContent="final_urgency">
               <span className="flex items-center gap-2 text-sm sm:text-base">
                 <Target className="w-4 h-4 sm:w-5 sm:h-5" />
-                AGENDAR REUNIÃO
+                Agendar reunião
                 <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
               </span>
             </CTAButton>

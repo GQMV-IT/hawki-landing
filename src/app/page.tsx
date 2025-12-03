@@ -93,7 +93,7 @@ export default function Home() {
       <CTASectionPremium 
         title="Quer Este Sistema Funcionando na Sua Clínica?"
         subtitle="Agende sua avaliação e descubra o potencial real da sua clínica"
-        buttonText="QUERO DESCOBRIR MEU POTENCIAL"
+        buttonText="Quero descobrir meu potencial"
         utmContent="cta_after_how_it_works"
         backgroundVariant="light"
         buttonIcon="rocket"
