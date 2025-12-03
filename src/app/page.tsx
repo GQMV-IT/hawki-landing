@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react';
 import { 
-  Header, 
   IntroModal, 
   HeroPremium,
   CTASectionPremium,
@@ -61,8 +60,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white">
-      <Header />
-      
       {/* Hero with Instagram Profile Info + AI Analysis + CTA */}
       <HeroPremium />
       
