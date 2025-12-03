@@ -5,6 +5,7 @@ export { default as Services } from "./Services";
 export { default as ProfileAnalysis } from "./ProfileAnalysis";
 export { default as Results } from "./Results";
 export { default as IntroModal } from "./IntroModal";
+export { default as InactivityPopup } from "./InactivityPopup";
 
 // New Premium Components
 export { default as HeroPremium } from "./HeroPremium";

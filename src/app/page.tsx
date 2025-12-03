@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { 
   IntroModal, 
+  InactivityPopup,
   HeroPremium,
   CTASectionPremium,
   SolutionSection,
@@ -112,6 +113,9 @@ export default function Home() {
 
       {/* Intro Modal for first-time visitors */}
       {!hasUserData() && <IntroModal />}
+
+      {/* Inactivity Popup for users who have data */}
+      <InactivityPopup />
     </div>
   );
 }

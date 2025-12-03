@@ -1,6 +1,6 @@
 'use client';
 
-import { Award, Users, Briefcase, Megaphone, Lightbulb } from 'lucide-react';
+import { Award, Briefcase, Megaphone, Lightbulb } from 'lucide-react';
 import { Section, MotionWrapper } from './ui';
 
 export default function AboutPietro() {
@@ -39,15 +39,20 @@ export default function AboutPietro() {
 
           {/* Content */}
           <div className="grid md:grid-cols-2 gap-8 items-center">
-            {/* Image Placeholder */}
+            {/* Founder Photo */}
             <MotionWrapper delay={0.2}>
               <div className="relative">
-                <div className="aspect-square rounded-3xl bg-gradient-to-br from-purple-100 via-blue-100 to-cyan-100 flex items-center justify-center shadow-2xl border-4 border-white">
-                  <div className="text-center p-8">
-                    <Users className="w-32 h-32 mx-auto mb-4" style={{ color: '#655cb1' }} />
-                    <p className="text-2xl font-bold text-gray-900">Pietro Hummel</p>
-                    <p className="text-lg text-gray-600 mt-2">Fundador Hawki</p>
-                  </div>
+                <div className="aspect-square rounded-3xl bg-gradient-to-br from-purple-100 via-blue-100 to-cyan-100 overflow-hidden shadow-2xl border-4 border-white">
+                  <img 
+                    src="/Pietro.jpg" 
+                    alt="Pietro Hummel - Fundador Hawki"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                {/* Name overlay */}
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6 rounded-b-3xl">
+                  <p className="text-2xl font-bold text-white">Pietro Hummel</p>
+                  <p className="text-lg text-white/80">Fundador Hawki</p>
                 </div>
               </div>
             </MotionWrapper>
