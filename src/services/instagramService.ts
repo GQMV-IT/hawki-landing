@@ -130,31 +130,29 @@ export const analyzeProfileWithAI = async (
       : "N/A";
 
       
-  // Create prompt for LLM
-  const prompt = `Você é um consultor especialista em marketing digital para clínicas odontológicas da Hawki, uma agência focada em marketing de performance para dentistas.
+  // Create prompt for LLM with new approach focused on urgency and AI
+  const prompt = `Crie uma mensagem curta, provocativa e personalizada, destinada a donos de clínicas ou médicos (dentistas, dermatologistas, esteticistas etc.) com base nas informações do perfil do Instagram.
 
-  Analise este perfil do Instagram e forneça um texto curto em português brasileiro explicando como a Hawki pode ajudar esta clínica a transformar seus seguidores em pacientes reais e aumentar o faturamento através de estratégias de tráfego pago e conversão.
+  OBJETIVO: Despertar consciência sobre o atraso tecnológico no atendimento ao paciente, mostrando como o uso de uma IA pode substituir a CRC tradicional e transformar o processo de agendamento e conversão de leads.
 
   Dados do Perfil:
   - Username: @${profileData.username}
   - Nome: ${profileData.fullName}
   - Seguidores: ${profileData.followers.toLocaleString()}
-  - Seguindo: ${profileData.following.toLocaleString()}
-  - Posts: ${profileData.posts}
-  - Proporção de Seguidores: ${followRatio}
-  - Verificado: ${profileData.isVerified ? "Sim" : "Não"}
-  - Privado: ${profileData.isPrivate ? "Sim (🔒)" : "Não (Público)"}
-  - Conta Comercial: ${profileData.isBusiness ? "Sim" : "Não"}
-  - Tem Links na Bio: ${profileData.hasBioLinks ? "Sim" : "Não"}
-  - Tem Informações de Contato: ${profileData.hasContact ? "Sim" : "Não"}
-  - Tem Destaques de Stories: ${profileData.hasHighlights ? "Sim" : "Não"}
-  - Quantidade de Reels: ${profileData.totalClips}
+  - Tipo de conta: ${profileData.isBusiness ? "Clínica" : "Profissional"}
   - Biografia: "${profileData.biography || "Sem biografia"}"
 
-  Foque em explicar como a Hawki pode ajudar, sem falar em pontos de melhoria específicos.
-  Sua resposta deve ser curta e nao deve conter emojis ou markdown.
+  INSTRUÇÕES:
+  1. Se o perfil for de um médico, use "você" e destaque o nome pessoal
+  2. Se o perfil for de uma clínica, destaque o nome da clínica e use "sua equipe"
+  3. Use tom direto, consultivo e levemente provocativo, mas mantendo respeito profissional
+  4. A linguagem deve ser simples, clara e com senso de urgência
+  5. Mencione: dependência de indicações, IA para automatizar agendamentos, e concorrência usando tecnologia
+  6. Máximo de 650 caracteres
+  7. Termine com uma pergunta provocativa sobre tomar controle do crescimento
+  8. NÃO use emojis, NÃO use markdown
 
-  Seja direto, profissional e específico para a situação deste perfil odontológico.`;
+  Seja direto e focado em urgência e transformação através de IA.`;
 
   try {
     const response = await fetch('/api/text/generate', {
@@ -163,7 +161,7 @@ export const analyzeProfileWithAI = async (
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        system: "Você é um consultor especialista em marketing digital da Hawki, uma agência de performance focada em clínicas odontológicas. Forneça um texto curto em português brasileiro explicando como a Hawki pode ajudar esta clínica a aumentar o faturamento através de marketing de performance e tráfego pago. Não use emojis, não use markdown e não faça o texto maior que 120 palavras. Seja profissional, direto e focado em resultados concretos para clínicas odontológicas.",
+        system: "Você é um consultor especialista em IA para clínicas da Hawki. Crie mensagens provocativas e urgentes sobre como IA pode substituir atendimento manual e aumentar conversões. Use tom direto, consultivo e levemente provocativo. NÃO use emojis. NÃO use markdown. Máximo 650 caracteres. Foque em urgência, concorrência usando IA, e dependência de indicações vs automação inteligente.",
         prompt,
       }),
     });

@@ -1,7 +1,21 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Header, Hero, About, Services, ProfileAnalysis, Results, IntroModal } from './components';
+import { 
+  IntroModal, 
+  InactivityPopup,
+  HeroPremium,
+  CTASectionPremium,
+  SolutionSection,
+  ComparisonSection,
+  WhatYouGetSection,
+  FinancialImpact,
+  HowItWorks,
+  AboutPietro,
+  TargetAudience,
+  Problems,
+  FinalCTA
+} from './components';
 import { useUserStore } from '@/store/userStore';
 import { getUserInfo } from '@/services';
 
@@ -47,14 +61,61 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white">
-      <Header />
-      <Hero />
-      <ProfileAnalysis />
-      <Results />
-      <About />
-      <Services />
+      {/* Hero with Instagram Profile Info + AI Analysis + CTA */}
+      <HeroPremium />
+      
+      {/* Solution Section */}
+      <SolutionSection />
+      
+      {/* Comparison */}
+      <ComparisonSection />
+      
+      {/* CTA 2 */}
+      <CTASectionPremium 
+        title="Pronto para Transformar sua Clínica?"
+        subtitle="Não espere mais - Agende sua avaliação estratégica e descubra como escalar"
+        buttonText="Quero começar agora"
+        utmContent="cta_after_comparison"
+        backgroundVariant="light"
+        buttonIcon="rocket"
+      />
+      
+      {/* What You Get */}
+      <WhatYouGetSection />
+      
+      {/* Financial Impact + CTA */}
+      <FinancialImpact />
+      
+      {/* How It Works */}
+      <HowItWorks />
+      
+      {/* CTA 4 */}
+      <CTASectionPremium 
+        title="Quer Este Sistema Funcionando na Sua Clínica?"
+        subtitle="Agende sua avaliação e descubra o potencial real da sua clínica"
+        buttonText="Quero descobrir meu potencial"
+        utmContent="cta_after_how_it_works"
+        backgroundVariant="light"
+        buttonIcon="rocket"
+      />
+      
+      {/* About Pietro */}
+      <AboutPietro />
+      
+      {/* Target Audience */}
+      <TargetAudience />
+      
+      {/* Problems */}
+      <Problems />
+      
+      {/* Final CTA with Urgency */}
+      <FinalCTA />
 
+      {/* Intro Modal for first-time visitors */}
       {!hasUserData() && <IntroModal />}
+
+      {/* Inactivity Popup for users who have data */}
+      <InactivityPopup />
     </div>
   );
 }

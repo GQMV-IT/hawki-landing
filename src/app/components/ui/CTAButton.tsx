@@ -35,7 +35,7 @@ export default function CTAButton({ children, className = '', utmContent }: CTAB
   return (
     <a
       href={typeformUrl}
-      className={`group relative px-8 py-3 text-white text-lg font-bold rounded-xl shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 overflow-hidden cursor-pointer ${className}`}
+      className={`group relative inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 text-white text-base sm:text-lg font-bold rounded-xl shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 overflow-hidden cursor-pointer ${className}`}
       style={{ background: 'linear-gradient(to right, #655cb1, #659fcf)' }}
     >
       {children}
