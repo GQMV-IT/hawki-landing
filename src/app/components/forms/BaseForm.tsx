@@ -27,22 +27,6 @@ export default function BaseForm({ onSubmit, initialData }: BaseFormProps) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      {/* IP-based personalized greeting */}
-      {(ipGreeting || isLoadingLocation) && (
-        <div className="text-center p-3 rounded-xl bg-gradient-to-r from-purple-50 to-teal-50 border border-purple-100/50">
-          {isLoadingLocation ? (
-            <div className="flex items-center justify-center gap-2 text-gray-500">
-              <div className="w-4 h-4 border-2 border-purple-400 border-t-transparent rounded-full animate-spin" />
-              <span className="text-sm">Localizando você...</span>
-            </div>
-          ) : (
-            <p className="text-sm text-gray-700 font-medium">
-              📍 {ipGreeting}
-            </p>
-          )}
-        </div>
-      )}
-
       {/* Introductory Message */}
       <div className="text-center mb-6 pb-6 border-b border-gray-200">
         <div
@@ -56,6 +40,22 @@ export default function BaseForm({ onSubmit, initialData }: BaseFormProps) {
           Compartilhe algumas informações com a gente para que possamos entender melhor suas
           necessidades e começar a transformar sua clínica em uma máquina de resultados.
         </p>
+
+        {/* IP-based personalized greeting */}
+        {(ipGreeting || isLoadingLocation) && (
+          <div className="mt-4 p-3 rounded-xl bg-gradient-to-r from-purple-50 to-teal-50 border border-purple-100/50">
+            {isLoadingLocation ? (
+              <div className="flex items-center justify-center gap-2 text-gray-500">
+                <div className="w-4 h-4 border-2 border-purple-400 border-t-transparent rounded-full animate-spin" />
+                <span className="text-sm">Localizando você...</span>
+              </div>
+            ) : (
+              <p className="text-sm text-gray-700 font-medium">
+                📍 {ipGreeting}
+              </p>
+            )}
+          </div>
+        )}
       </div>
 
       <div>
