@@ -1,7 +1,6 @@
 'use client';
 
-import Image from 'next/image';
-import { Award, Briefcase, Megaphone, Lightbulb } from 'lucide-react';
+import { Award, Users, Briefcase, Megaphone, Lightbulb } from 'lucide-react';
 import { Section, MotionWrapper } from './ui';
 
 export default function AboutPietro() {
@@ -27,35 +26,28 @@ export default function AboutPietro() {
   return (
     <Section className="bg-gradient-to-br from-gray-50 to-white">
       <MotionWrapper>
-        <div className="max-w-6xl mx-auto space-y-8 sm:space-y-12">
+        <div className="max-w-6xl mx-auto space-y-12">
           {/* Título */}
           <div className="text-center space-y-4">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900">
+            <h2 className="text-4xl sm:text-5xl font-bold text-gray-900">
               Quem é Pietro Hummel?
             </h2>
-            <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Conheça o especialista que vai transformar sua visão sobre IA aplicada a clínicas
             </p>
           </div>
 
           {/* Content */}
           <div className="grid md:grid-cols-2 gap-8 items-center">
-            {/* Pietro's Photo */}
+            {/* Image Placeholder */}
             <MotionWrapper delay={0.2}>
-              <div className="relative flex justify-center">
-                <div className="relative w-64 h-64 sm:w-80 sm:h-80 rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
-                  <Image
-                    src="/Pietro.jpg"
-                    alt="Pietro Hummel - Fundador Hawki"
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 640px) 256px, 320px"
-                    priority
-                  />
-                </div>
-                {/* Name Badge */}
-                <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-white px-6 py-2 rounded-full shadow-lg">
-                  <p className="text-lg font-bold text-gray-900">Pietro Hummel</p>
+              <div className="relative">
+                <div className="aspect-square rounded-3xl bg-gradient-to-br from-purple-100 via-blue-100 to-cyan-100 flex items-center justify-center shadow-2xl border-4 border-white">
+                  <div className="text-center p-8">
+                    <Users className="w-32 h-32 mx-auto mb-4" style={{ color: '#655cb1' }} />
+                    <p className="text-2xl font-bold text-gray-900">Pietro Hummel</p>
+                    <p className="text-lg text-gray-600 mt-2">Fundador Hawki</p>
+                  </div>
                 </div>
               </div>
             </MotionWrapper>
