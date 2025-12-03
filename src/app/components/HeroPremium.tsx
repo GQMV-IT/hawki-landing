@@ -47,7 +47,7 @@ export default function HeroPremium() {
 
   return (
     <section 
-      className="min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-purple-50 via-blue-50 to-cyan-50"
+      className="w-full flex items-center justify-center bg-gradient-to-br from-purple-50 via-blue-50 to-cyan-50 py-12"
       style={{
         paddingTop: 'max(5rem, env(safe-area-inset-top))',
         paddingRight: 'max(1rem, env(safe-area-inset-right))',
@@ -135,7 +135,7 @@ export default function HeroPremium() {
             <CTAButton utmContent="hero_analysis">
               <span className="flex items-center justify-center gap-2 text-sm sm:text-base">
                 <Rocket className="w-4 h-4 sm:w-5 sm:h-5" />
-                AGENDAR AVALIAÇÃO
+                Quero automatizar minha clínica com IA
                 <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
               </span>
             </CTAButton>

@@ -46,9 +46,14 @@ export default function SolutionSection() {
         <div className="max-w-6xl mx-auto space-y-12">
           {/* Título da Solução */}
           <div className="text-center space-y-4">
-            <p className="text-sm font-semibold uppercase tracking-wider" style={{ color: '#659fcf' }}>
-              SOLUÇÃO EXCLUSIVA
-            </p>
+            <div className="inline-block">
+              <span 
+                className="inline-block px-5 py-2 text-sm font-bold uppercase tracking-wider text-white rounded-full shadow-lg"
+                style={{ background: 'linear-gradient(135deg, #655cb1, #5dd6d5)' }}
+              >
+                SOLUÇÃO EXCLUSIVA
+              </span>
+            </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-900">
               É exatamente por isso que criamos o
             </h2>

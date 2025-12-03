@@ -9,7 +9,7 @@ export default function Problems() {
     'Baixa conversão porque o atendimento não está preparado',
     'Agenda fantasma com semanas vazias e outras sobrecarregadas',
     'Dependência de indicação que limita seu crescimento',
-    'Cada protocolo perdido = R$60-100k que nunca mais voltam',
+    'Cada protocolo perdido = R$20-30k que nunca mais voltam',
   ];
 
   return (

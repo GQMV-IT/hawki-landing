@@ -74,7 +74,7 @@ export default function Home() {
       <CTASectionPremium 
         title="Pronto para Transformar sua Clínica?"
         subtitle="Não espere mais - Agende sua avaliação estratégica e descubra como escalar"
-        buttonText="QUERO AGENDAR MINHA REUNIÃO"
+        buttonText="Quero começar agora"
         utmContent="cta_after_comparison"
         backgroundVariant="light"
         buttonIcon="rocket"

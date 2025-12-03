@@ -48,7 +48,7 @@ export default function FinancialImpact() {
             {/* Valor Perdido */}
             <h3 className="text-xl sm:text-2xl font-bold leading-tight mb-4">
               <span className="text-gray-900">Cada protocolo perdido = </span>
-              <span className="text-red-500">R$60-100k</span>
+              <span className="text-red-500">R$20-30k</span>
               <span className="text-gray-900"> que nunca mais voltam</span>
             </h3>
             
@@ -74,7 +74,7 @@ export default function FinancialImpact() {
               <CTAButton utmContent="cta_after_financial_impact">
                 <span className="flex items-center gap-2 text-sm sm:text-base">
                   <Target className="w-4 h-4 sm:w-5 sm:h-5" />
-                  AGENDAR AVALIAÇÃO
+                  Agendar avaliação
                   <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
                 </span>
               </CTAButton>
