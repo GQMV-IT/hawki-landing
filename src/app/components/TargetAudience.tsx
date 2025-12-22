@@ -1,7 +1,7 @@
 'use client';
 
-import { CheckCircle2, Users, TrendingDown, Clock, Target, DollarSign } from 'lucide-react';
-import { Section, MotionWrapper } from './ui';
+import { CheckCircle2, Users, TrendingDown, Clock, Target, DollarSign, ArrowRight } from 'lucide-react';
+import { Section, MotionWrapper, CTAButton } from './ui';
 
 export default function TargetAudience() {
   const targetGroups = [
@@ -101,6 +101,17 @@ export default function TargetAudience() {
                   Este é o ÚNICO sistema que você precisa para construir crescimento previsível 
                   na sua clínica - sem depender de indicações, sem achismos, sem perder dinheiro
                 </p>
+              </div>
+
+              {/* CTA Button */}
+              <div className="flex justify-center mt-8">
+                <CTAButton utmContent="target_audience_cta">
+                  <span className="flex items-center gap-2 text-sm sm:text-base">
+                    <Target className="w-4 h-4 sm:w-5 sm:h-5" />
+                    Agendar reunião
+                    <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
+                  </span>
+                </CTAButton>
               </div>
             </div>
           </div>
