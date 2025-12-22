@@ -1,9 +1,15 @@
 'use client';
 
-import { useState } from 'react';
-import { ArrowLeft, Loader2, Instagram } from 'lucide-react';
+import {
+    trackInstagramProfileError,
+    trackInstagramProfileFound,
+    trackInstagramSearch,
+    trackProfileConfirm,
+} from '@/lib/analytics';
 import { getUserInfo, InstagramUserInfo } from '@/services';
 import { InstagramUserData } from '@/store/userStore';
+import { ArrowLeft, Instagram, Loader2 } from 'lucide-react';
+import { useState } from 'react';
 
 interface InstagramFormProps {
   onSubmit: (data: InstagramUserData) => void;
@@ -25,11 +31,25 @@ export default function InstagramForm({ onSubmit, onBack, baseFormData }: Instag
     setIsLoading(true);
     setFailed(false);
 
+    // Track instagram search
+    trackInstagramSearch(username);
+
     try {
       const data = await getUserInfo(username);
       setUserInfo(data);
+      
+      // Track successful profile found
+      trackInstagramProfileFound({
+        username: data.username,
+        followers: data.follower_count,
+        following: data.following_count,
+        posts: data.media_count,
+        isVerified: data.is_verified,
+      });
     } catch (err) {
       setFailed(true);
+      // Track profile search error
+      trackInstagramProfileError(username);
     } finally {
       setIsLoading(false);
     }
@@ -37,6 +57,13 @@ export default function InstagramForm({ onSubmit, onBack, baseFormData }: Instag
 
   const handleConfirm = () => {
     if (userInfo) {
+      // Track profile confirmation
+      trackProfileConfirm({
+        username: userInfo.username,
+        followers: userInfo.follower_count,
+        posts: userInfo.media_count,
+      });
+      
       onSubmit({ instagram: username, instagramInfo: userInfo });
     }
   };

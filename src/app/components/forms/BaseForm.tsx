@@ -1,10 +1,11 @@
 'use client';
 
-import { useState } from 'react';
-import { BaseUserData } from '@/store/userStore';
-import { PhoneInput } from '../ui';
-import { useLocationMessage } from '@/hooks/useLocationMessage';
 import { useIpLocation } from '@/hooks/useIpLocation';
+import { useLocationMessage } from '@/hooks/useLocationMessage';
+import { trackFormStart, trackFormSubmit } from '@/lib/analytics';
+import { BaseUserData } from '@/store/userStore';
+import { useRef, useState } from 'react';
+import { PhoneInput } from '../ui';
 
 export type BaseFormData = Omit<BaseUserData, 'instagram'>;
 
@@ -16,12 +17,30 @@ interface BaseFormProps {
 export default function BaseForm({ onSubmit, initialData }: BaseFormProps) {
   const [name, setName] = useState(initialData?.name || '');
   const [phone, setPhone] = useState(initialData?.phone || '');
+  const hasTrackedFormStart = useRef(false);
 
   const { location, message, isLoading } = useLocationMessage(phone);
   const { greeting: ipGreeting, isLoading: isLoadingLocation } = useIpLocation();
 
+  const handleFormStart = () => {
+    if (!hasTrackedFormStart.current) {
+      trackFormStart('base_form');
+      hasTrackedFormStart.current = true;
+    }
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Extract phone region (DDD) for analytics
+    const phoneDigits = phone.replace(/\D/g, '');
+    const phoneRegion = phoneDigits.length >= 2 ? phoneDigits.slice(0, 2) : undefined;
+    
+    trackFormSubmit('base_form', {
+      phoneRegion,
+      hasLocation: !!location,
+    });
+    
     onSubmit({ name, phone });
   };
 
@@ -67,6 +86,7 @@ export default function BaseForm({ onSubmit, initialData }: BaseFormProps) {
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          onFocus={handleFormStart}
           required
           className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-[#659fcf] focus:outline-none transition-colors"
         />

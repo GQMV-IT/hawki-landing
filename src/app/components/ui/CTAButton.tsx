@@ -1,7 +1,8 @@
 'use client';
 
-import { useMemo, ReactNode } from 'react';
+import { trackCTAClick } from '@/lib/analytics';
 import { useUserStore } from '@/store';
+import { ReactNode, useMemo } from 'react';
 
 interface CTAButtonProps {
   children: ReactNode;
@@ -32,9 +33,16 @@ export default function CTAButton({ children, className = '', utmContent }: CTAB
     return `${baseUrl}?${params.toString()}`;
   }, [name, phone, instagram, instagramInfo, utmContent]);
 
+  const handleClick = () => {
+    // Check if user has filled any data (warm lead indicator)
+    const hasUserData = !!(name || phone || instagram);
+    trackCTAClick(utmContent || 'unknown', hasUserData);
+  };
+
   return (
     <a
       href={typeformUrl}
+      onClick={handleClick}
       className={`group relative inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 text-white text-base sm:text-lg font-bold rounded-xl shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 overflow-hidden cursor-pointer ${className}`}
       style={{ background: 'linear-gradient(to right, #655cb1, #659fcf)' }}
     >
