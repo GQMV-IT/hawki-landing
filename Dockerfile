@@ -18,6 +18,10 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
+# Build arguments for public environment variables (inlined at build time)
+ARG NEXT_PUBLIC_GTM_ID
+ENV NEXT_PUBLIC_GTM_ID=$NEXT_PUBLIC_GTM_ID
+
 # Set environment variables for build
 ENV NEXT_TELEMETRY_DISABLED=1
 

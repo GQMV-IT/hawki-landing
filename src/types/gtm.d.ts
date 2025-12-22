@@ -11,3 +11,4 @@ interface Window {
   dataLayer: DataLayerEvent[];
   gtag?: (...args: unknown[]) => void;
 }
+
