@@ -13,8 +13,6 @@ import {
   HowItWorks,
   AboutPietro,
   TargetAudience,
-  Problems,
-  FinalCTA
 } from './components';
 import { useUserStore } from '@/store/userStore';
 import { getUserInfo } from '@/services';
@@ -104,12 +102,6 @@ export default function Home() {
       
       {/* Target Audience */}
       <TargetAudience />
-      
-      {/* Problems */}
-      <Problems />
-      
-      {/* Final CTA with Urgency */}
-      <FinalCTA />
 
       {/* Intro Modal for first-time visitors */}
       {!hasUserData() && <IntroModal />}
