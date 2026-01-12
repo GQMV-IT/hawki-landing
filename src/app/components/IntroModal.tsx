@@ -2,6 +2,7 @@
 
 import { useMemo, useState, useEffect } from 'react';
 import { InstagramUserData, useUserStore } from '@/store/userStore';
+import { sendToGoogleSheet } from '@/services';
 import { BaseFormData } from './forms/BaseForm';
 import { BaseForm, InstagramForm } from './forms';
 
@@ -42,6 +43,14 @@ export default function IntroModal() {
       })
     );
     setInstagramInfo(data);
+
+    // Fire-and-forget: send data to Google Sheets without blocking the user flow
+    sendToGoogleSheet({
+      name: baseData.name,
+      phone: baseData.phone,
+      instagram: data.instagram,
+      instagramInfo: data.instagramInfo,
+    });
 
     setIsModalOpen(false);
   };
