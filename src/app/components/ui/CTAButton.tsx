@@ -2,6 +2,7 @@
 
 import { trackCTAClick } from '@/lib/analytics';
 import { useUserStore } from '@/store';
+import { useFormContext } from '@/app/landing/FormContext';
 import { ReactNode, useMemo } from 'react';
 
 interface CTAButtonProps {
@@ -12,29 +13,30 @@ interface CTAButtonProps {
 
 export default function CTAButton({ children, className = '', utmContent }: CTAButtonProps) {
   const { name, phone, instagram, instagramInfo } = useUserStore();
+  const { formBaseUrl } = useFormContext();
 
-  // Construct Typeform URL with hidden fields
   const typeformUrl = useMemo(() => {
-    const baseUrl = 'https://hawki.pro.typeform.com/to/fPcFisqB';
+    // UTM params → query string
     const params = new URLSearchParams({
       utm_source: 'landing',
       utm_medium: 'cta',
       utm_campaign: 'lead_gen',
+      utm_term: instagram || '',
     });
+    if (utmContent) params.set('utm_content', utmContent);
 
-    // Add utm_content if provided
-    if (utmContent) params.append('utm_content', utmContent);
+    // Hidden fields → hash fragment (formato Typeform)
+    const hiddenFields: string[] = [];
+    if (instagram) hiddenFields.push(`instagram=${encodeURIComponent(instagram)}`);
+    if (phone) hiddenFields.push(`phone_number=${encodeURIComponent(phone)}`);
+    if (name) hiddenFields.push(`nome_dentista=${encodeURIComponent(name)}`);
 
-    // Add hidden fields if user data is available
-    if (name) params.append('nome_dentista', name);
-    if (phone) params.append('phone_number', phone);
-    if (instagram) params.append('instagram', instagram);
+    const hash = hiddenFields.length > 0 ? `#${hiddenFields.join('&')}` : '';
 
-    return `${baseUrl}?${params.toString()}`;
-  }, [name, phone, instagram, instagramInfo, utmContent]);
+    return `${formBaseUrl}?${params.toString()}${hash}`;
+  }, [formBaseUrl, name, phone, instagram, instagramInfo, utmContent]);
 
   const handleClick = () => {
-    // Check if user has filled any data (warm lead indicator)
     const hasUserData = !!(name || phone || instagram);
     trackCTAClick(utmContent || 'unknown', hasUserData);
   };

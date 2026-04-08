@@ -26,7 +26,7 @@ export default function HowItWorks() {
     {
       icon: BarChart3,
       title: 'Dashboard em Tempo Real',
-      description: 'Acesso a todos os dados e métricas da sua captação',
+      description: 'Acesso a todos os dados e métricas dos seus atendimentos e agendamentos',
       gradient: 'from-purple-500 to-pink-500',
     },
     {
@@ -44,10 +44,10 @@ export default function HowItWorks() {
           {/* Título */}
           <div className="text-center space-y-4">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900">
-              Como Funciona o Sistema de Captação Premium™
+              Como Funciona a Sofia na Sua Clínica
             </h2>
             <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto">
-              Método completo para automatizar a captação da sua clínica de ponta a ponta
+              O ecossistema completo para automatizar o atendimento e os agendamentos da sua clínica
             </p>
           </div>
 
@@ -83,11 +83,11 @@ export default function HowItWorks() {
           <div className="bg-gradient-to-r from-purple-100 via-blue-100 to-cyan-100 rounded-2xl p-8 shadow-lg">
             <div className="text-center space-y-4">
               <h3 className="text-2xl font-bold text-gray-900">
-                Suporte Total:
+                Otimização Constante:
               </h3>
               <p className="text-lg text-gray-700 max-w-4xl mx-auto leading-relaxed">
-                Com Sofia IA funcionando 24/7, dashboard em tempo real e otimização contínua, 
-                sua clínica terá previsibilidade e escalabilidade no crescimento.
+                Com a Sofia IA funcionando 24/7 e gerando métricas em tempo real, 
+                sua clínica terá previsibilidade e eficiência máxima no atendimento.
               </p>
             </div>
           </div>
