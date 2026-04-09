@@ -4,6 +4,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { X, AlertTriangle, Clock, Zap, TrendingUp } from 'lucide-react';
 import { useUserStore } from '@/store/userStore';
 import { useInactivityTimer } from '@/hooks/useInactivityTimer';
+import { useFormContext } from '@/app/landing/FormContext';
 
 const INACTIVITY_TIMEOUT = 90 * 1000; // 1.5 minutes
 const COUNTDOWN_DURATION = 15 * 60; // 15 minutes in seconds
@@ -11,6 +12,7 @@ const COUNTDOWN_DURATION = 15 * 60; // 15 minutes in seconds
 export default function InactivityPopup() {
   const { name, phone, instagram } = useUserStore();
   const hasUserData = useUserStore((state) => state.hasUserData());
+  const { formBaseUrl } = useFormContext();
   
   const [isVisible, setIsVisible] = useState(false);
   const [isDismissed, setIsDismissed] = useState(false);
@@ -57,19 +59,22 @@ export default function InactivityPopup() {
 
   // Construct Typeform URL
   const typeformUrl = useMemo(() => {
-    const baseUrl = 'https://hawki.pro.typeform.com/to/fPcFisqB';
     const params = new URLSearchParams({
       utm_source: 'landing',
       utm_medium: 'inactivity_popup',
       utm_campaign: 'lead_recovery',
+      utm_term: instagram || '',
     });
 
-    if (name) params.append('nome_dentista', name);
-    if (phone) params.append('phone_number', phone);
-    if (instagram) params.append('instagram', instagram);
+    const hiddenFields: string[] = [];
+    if (instagram) hiddenFields.push(`instagram=${encodeURIComponent(instagram)}`);
+    if (phone) hiddenFields.push(`phone_number=${encodeURIComponent(phone)}`);
+    if (name) hiddenFields.push(`nome_dentista=${encodeURIComponent(name)}`);
 
-    return `${baseUrl}?${params.toString()}`;
-  }, [name, phone, instagram]);
+    const hash = hiddenFields.length > 0 ? `#${hiddenFields.join('&')}` : '';
+
+    return `${formBaseUrl}?${params.toString()}${hash}`;
+  }, [formBaseUrl, name, phone, instagram]);
 
   const handleDismiss = () => {
     setIsVisible(false);
