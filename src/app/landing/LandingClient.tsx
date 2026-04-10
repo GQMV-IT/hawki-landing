@@ -18,7 +18,6 @@ import { useUserStore } from '@/store/userStore';
 import { getUserInfo } from '@/services';
 import type { Variant } from './page';
 import { FormContext, getFormUrl } from './FormContext';
-import { UTMContext, type UTMParams } from './UTMContext';
 
 // ---------------------------------------------------------------------------
 // Section IDs
@@ -160,19 +159,6 @@ const CTA_COPY: Record<Variant, { mid?: CtaConfig; final: CtaConfig }> = {
 export default function LandingClient({ variant }: { variant: Variant }) {
   const { setUserData, hasUserData, instagram } = useUserStore();
   const [isLoadingStoredData, setIsLoadingStoredData] = useState(true);
-  const [utmParams, setUtmParams] = useState<UTMParams>({});
-
-  // Captura UTMs da URL de entrada (vindos do anúncio)
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    setUtmParams({
-      utm_source:   params.get('utm_source')   || undefined,
-      utm_medium:   params.get('utm_medium')   || undefined,
-      utm_campaign: params.get('utm_campaign') || undefined,
-      utm_term:     params.get('utm_term')     || undefined,
-      utm_content:  params.get('utm_content')  || undefined,
-    });
-  }, []);
 
   useEffect(() => {
     const loadStoredUserData = async () => {
@@ -270,7 +256,6 @@ export default function LandingClient({ variant }: { variant: Variant }) {
   };
 
   return (
-    <UTMContext.Provider value={utmParams}>
     <FormContext.Provider value={{ formBaseUrl: getFormUrl(variant) }}>
       <div className="min-h-screen bg-white">
         {layout.map((section, i) => renderSection(section, i))}
@@ -278,6 +263,5 @@ export default function LandingClient({ variant }: { variant: Variant }) {
         <InactivityPopup />
       </div>
     </FormContext.Provider>
-    </UTMContext.Provider>
   );
 }
