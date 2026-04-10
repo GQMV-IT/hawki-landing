@@ -5,6 +5,7 @@ import { X, AlertTriangle, Clock, Zap, TrendingUp } from 'lucide-react';
 import { useUserStore } from '@/store/userStore';
 import { useInactivityTimer } from '@/hooks/useInactivityTimer';
 import { useFormContext } from '@/app/landing/FormContext';
+import { useUTMContext } from '@/app/landing/UTMContext';
 
 const INACTIVITY_TIMEOUT = 90 * 1000; // 1.5 minutes
 const COUNTDOWN_DURATION = 15 * 60; // 15 minutes in seconds
@@ -13,6 +14,7 @@ export default function InactivityPopup() {
   const { name, phone, instagram } = useUserStore();
   const hasUserData = useUserStore((state) => state.hasUserData());
   const { formBaseUrl } = useFormContext();
+  const utm = useUTMContext();
   
   const [isVisible, setIsVisible] = useState(false);
   const [isDismissed, setIsDismissed] = useState(false);
@@ -57,24 +59,25 @@ export default function InactivityPopup() {
     return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
   }, [countdown]);
 
-  // Construct Typeform URL
+  // Construct Typeform URL — preserva UTMs do anúncio de origem
   const typeformUrl = useMemo(() => {
     const params = new URLSearchParams({
-      utm_source: 'landing',
-      utm_medium: 'inactivity_popup',
-      utm_campaign: 'lead_recovery',
-      utm_term: instagram || '',
+      utm_source:   utm.utm_source   || 'landing',
+      utm_medium:   utm.utm_medium   || 'organic',
+      utm_campaign: utm.utm_campaign || 'direct',
+      utm_term:     utm.utm_term     || instagram || '',
+      utm_content:  utm.utm_content  || 'inactivity_popup',
     });
 
     const hiddenFields: string[] = [];
     if (instagram) hiddenFields.push(`instagram=${encodeURIComponent(instagram)}`);
-    if (phone) hiddenFields.push(`phone_number=${encodeURIComponent(phone)}`);
-    if (name) hiddenFields.push(`nome_dentista=${encodeURIComponent(name)}`);
+    if (phone)     hiddenFields.push(`phone_number=${encodeURIComponent(phone)}`);
+    if (name)      hiddenFields.push(`nome_dentista=${encodeURIComponent(name)}`);
 
     const hash = hiddenFields.length > 0 ? `#${hiddenFields.join('&')}` : '';
 
     return `${formBaseUrl}?${params.toString()}${hash}`;
-  }, [formBaseUrl, name, phone, instagram]);
+  }, [formBaseUrl, utm, name, phone, instagram]);
 
   const handleDismiss = () => {
     setIsVisible(false);
