@@ -11,7 +11,7 @@ const FORM_URLS: Record<Variant, string> = {
   sofia:         'https://hawki.typeform.com/to/MBlCDQQC',
   'sofia-pain':  'https://hawki.typeform.com/to/OGJNEnn5',
   'sofia-prova': 'https://hawki.typeform.com/to/MBlCDQQC',
-  'sofia-rapida':'https://hawki.typeform.com/to/MBlCDQQC',
+  'sofia-rapida':'https://hawki.typeform.com/to/gorGUnTz',
 };
 
 interface FormContextValue {
