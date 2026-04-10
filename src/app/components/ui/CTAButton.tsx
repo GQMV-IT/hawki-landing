@@ -3,6 +3,7 @@
 import { trackCTAClick } from '@/lib/analytics';
 import { useUserStore } from '@/store';
 import { useFormContext } from '@/app/landing/FormContext';
+import { useUTMContext } from '@/app/landing/UTMContext';
 import { ReactNode, useMemo } from 'react';
 
 interface CTAButtonProps {
@@ -14,27 +15,29 @@ interface CTAButtonProps {
 export default function CTAButton({ children, className = '', utmContent }: CTAButtonProps) {
   const { name, phone, instagram, instagramInfo } = useUserStore();
   const { formBaseUrl } = useFormContext();
+  const utm = useUTMContext();
 
   const typeformUrl = useMemo(() => {
-    // UTM params → query string
+    // Preserva os UTMs do anúncio de origem.
+    // Fallbacks usados apenas quando o parâmetro não veio na URL.
     const params = new URLSearchParams({
-      utm_source: 'landing',
-      utm_medium: 'cta',
-      utm_campaign: 'lead_gen',
-      utm_term: instagram || '',
+      utm_source:   utm.utm_source   || 'landing',
+      utm_medium:   utm.utm_medium   || 'organic',
+      utm_campaign: utm.utm_campaign || 'direct',
+      utm_term:     utm.utm_term     || instagram || '',
+      utm_content:  utm.utm_content  || utmContent || '',
     });
-    if (utmContent) params.set('utm_content', utmContent);
 
     // Hidden fields → hash fragment (formato Typeform)
     const hiddenFields: string[] = [];
     if (instagram) hiddenFields.push(`instagram=${encodeURIComponent(instagram)}`);
-    if (phone) hiddenFields.push(`phone_number=${encodeURIComponent(phone)}`);
-    if (name) hiddenFields.push(`nome_dentista=${encodeURIComponent(name)}`);
+    if (phone)     hiddenFields.push(`phone_number=${encodeURIComponent(phone)}`);
+    if (name)      hiddenFields.push(`nome_dentista=${encodeURIComponent(name)}`);
 
     const hash = hiddenFields.length > 0 ? `#${hiddenFields.join('&')}` : '';
 
     return `${formBaseUrl}?${params.toString()}${hash}`;
-  }, [formBaseUrl, name, phone, instagram, instagramInfo, utmContent]);
+  }, [formBaseUrl, utm, name, phone, instagram, instagramInfo, utmContent]);
 
   const handleClick = () => {
     const hasUserData = !!(name || phone || instagram);
