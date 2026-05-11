@@ -3,7 +3,7 @@
 import { X, Check, Layers } from 'lucide-react';
 import { Section, MotionWrapper } from './ui';
 
-type Variant = 'default' | 'sofia';
+type Variant = 'default' | 'sofia' | 'trafego';
 
 const COPY = {
   default: {
@@ -30,6 +30,19 @@ const COPY = {
     here: {
       p1: 'A Sofia foi treinada e validada em dezenas de clínicas reais — com acompanhamento contínuo de quem entende do setor de saúde.',
       p2: 'Implementação feita junto com você, suporte ativo e otimização constante.',
+    },
+  },
+  trafego: {
+    title: 'Hawki vs. Agências Tradicionais',
+    subtitle:
+      'A maioria das agências para no anúncio. A gente vai até o paciente sentado na cadeira.',
+    others: {
+      p1: 'Agências tradicionais te entregam leads e somem. Se o lead não converteu, o problema é "seu".',
+      p2: 'Você paga pelo tráfego, mas fica sozinho na conversão. Sem processo, sem atendimento rápido, sem previsibilidade.',
+    },
+    here: {
+      p1: 'Na Hawki, a gente traz o lead e converte ele em paciente agendado. Tráfego + IA + acompanhamento contínuo.',
+      p2: 'Você acompanha cada etapa: quantos leads chegaram, quantos a Sofia atendeu, quantos agendaram. Resultado real, não relatório bonito.',
     },
   },
 };

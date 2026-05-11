@@ -19,3 +19,4 @@ export { default as AboutPietro } from "./AboutPietro";
 export { default as TargetAudience } from "./TargetAudience";
 export { default as Problems } from "./Problems";
 export { default as FinalCTA } from "./FinalCTA";
+export { default as FunnelProblem } from "./FunnelProblem";

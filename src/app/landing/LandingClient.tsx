@@ -13,6 +13,7 @@ import {
   HowItWorks,
   AboutPietro,
   TargetAudience,
+  FunnelProblem,
 } from '../components';
 import { useUserStore } from '@/store/userStore';
 import { getUserInfo } from '@/services';
@@ -25,6 +26,7 @@ import { UTMContext, type UTMParams } from './UTMContext';
 // ---------------------------------------------------------------------------
 type SectionId =
   | 'hero'
+  | 'funnel-problem'
   | 'solution'
   | 'comparison'
   | 'what-you-get'
@@ -97,6 +99,16 @@ const LAYOUTS: Record<Variant, SectionId[]> = {
     'about',
     'cta-final',
   ],
+  'trafego-sofia': [
+    'hero',
+    'funnel-problem',
+    'solution',
+    'how-it-works',
+    'financial',
+    'comparison',
+    'about',
+    'cta-final',
+  ],
 };
 
 // ---------------------------------------------------------------------------
@@ -152,6 +164,14 @@ const CTA_COPY: Record<Variant, { mid?: CtaConfig; final: CtaConfig }> = {
       buttonText: 'Quero ativar em 72 horas',
     },
   },
+  'trafego-sofia': {
+    final: {
+      title: 'Pronto pra ter um funil que realmente converte?',
+      subtitle:
+        'Agende sua avaliação gratuita e veja como o Sistema Hawki transforma anúncios em consultas agendadas.',
+      buttonText: 'Quero um funil que converte de verdade',
+    },
+  },
 };
 
 // ---------------------------------------------------------------------------
@@ -202,9 +222,11 @@ export default function LandingClient({ variant }: { variant: Variant }) {
     }
   }, [instagram, isLoadingStoredData]);
 
-  // Todos os variants sofia-* compartilham o mesmo copy de componente.
-  // A diferença entre eles está na ordem das seções e no copy dos CTAs.
-  const copyGroup: 'default' | 'sofia' = variant === 'default' ? 'default' : 'sofia';
+  // Cada família de variants compartilha o mesmo copy de componente.
+  // A diferença está na ordem das seções e no copy dos CTAs.
+  const copyGroup: 'default' | 'sofia' | 'trafego' =
+    variant === 'default' ? 'default' :
+    variant === 'trafego-sofia' ? 'trafego' : 'sofia';
 
   const layout = LAYOUTS[variant];
   const cta = CTA_COPY[variant];
@@ -213,6 +235,9 @@ export default function LandingClient({ variant }: { variant: Variant }) {
     switch (section) {
       case 'hero':
         return <HeroPremium key={key} />;
+
+      case 'funnel-problem':
+        return <FunnelProblem key={key} />;
 
       case 'solution':
         return <SolutionSection key={key} variant={copyGroup} />;
@@ -227,7 +252,7 @@ export default function LandingClient({ variant }: { variant: Variant }) {
         return <FinancialImpact key={key} variant={copyGroup} />;
 
       case 'how-it-works':
-        return <HowItWorks key={key} />;
+        return <HowItWorks key={key} variant={copyGroup} />;
 
       case 'about':
         return <AboutPietro key={key} variant={copyGroup} />;

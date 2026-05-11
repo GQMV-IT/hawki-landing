@@ -4,7 +4,7 @@ import { Bot, TrendingUp, BarChart3, Calendar, Cog, Rocket } from 'lucide-react'
 import { Section, MotionWrapper } from './ui';
 import { useUserStore } from '@/store';
 
-type Variant = 'default' | 'sofia';
+type Variant = 'default' | 'sofia' | 'trafego';
 
 const COPY = {
   default: {
@@ -70,6 +70,39 @@ const COPY = {
         icon: Cog,
         title: 'Implementação personalizada',
         description: 'A Sofia é configurada especificamente para a sua clínica, especialidade e fluxo de atendimento',
+      },
+    ],
+  },
+  trafego: {
+    preTitle: 'Por isso criamos o',
+    title: 'SISTEMA DE CAPTAÇÃO + CONVERSÃO HAWKI',
+    description:
+      'Tráfego pago de alta performance combinado com a Sofia IA, que atende, qualifica e agenda seus pacientes 24 horas por dia. Do anúncio à consulta agendada, sem buracos no caminho.',
+    features: [
+      {
+        icon: Rocket,
+        title: 'Anúncios segmentados para sua especialidade',
+        description: 'Campanhas criadas com base no perfil real dos seus pacientes ideais. Nada genérico, nada jogado.',
+      },
+      {
+        icon: TrendingUp,
+        title: 'Leads chegando todos os dias no seu WhatsApp',
+        description: 'Fluxo constante de pessoas interessadas nos seus serviços, prontas para agendar.',
+      },
+      {
+        icon: Bot,
+        title: 'Sofia IA respondendo cada lead em segundos',
+        description: 'Enquanto outros demoram horas para responder, a Sofia já está qualificando e conduzindo o paciente para o agendamento.',
+      },
+      {
+        icon: Calendar,
+        title: 'Agendamento direto na sua agenda',
+        description: 'O paciente agenda sem precisar de secretária, ligação ou troca infinita de mensagens.',
+      },
+      {
+        icon: BarChart3,
+        title: 'Dashboard com retorno real do investimento',
+        description: 'Você sabe exatamente quanto investiu, quantos leads chegaram, quantos agendaram e quanto faturou.',
       },
     ],
   },

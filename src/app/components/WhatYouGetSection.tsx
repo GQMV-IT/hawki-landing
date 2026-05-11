@@ -3,7 +3,7 @@
 import { MessageSquare, TrendingUp } from 'lucide-react';
 import { Section, MotionWrapper } from './ui';
 
-type Variant = 'default' | 'sofia';
+type Variant = 'default' | 'sofia' | 'trafego';
 
 const COPY = {
   default: {
@@ -77,7 +77,7 @@ const COPY = {
 };
 
 export default function WhatYouGetSection({ variant = 'default' }: { variant?: Variant }) {
-  const copy = COPY[variant];
+  const copy = (COPY as Record<string, typeof COPY.default>)[variant] ?? COPY.default;
   const pillars = copy.pillars;
 
   return (

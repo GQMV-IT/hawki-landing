@@ -1,8 +1,8 @@
 import LandingClient from './LandingClient';
 
-export type Variant = 'default' | 'sofia' | 'sofia-pain' | 'sofia-prova' | 'sofia-rapida';
+export type Variant = 'default' | 'sofia' | 'sofia-pain' | 'sofia-prova' | 'sofia-rapida' | 'trafego-sofia';
 
-const VALID_VARIANTS: Variant[] = ['sofia', 'sofia-pain', 'sofia-prova', 'sofia-rapida'];
+const VALID_VARIANTS: Variant[] = ['sofia', 'sofia-pain', 'sofia-prova', 'sofia-rapida', 'trafego-sofia'];
 
 interface LandingPageProps {
   searchParams: Promise<{ variant?: string }>;

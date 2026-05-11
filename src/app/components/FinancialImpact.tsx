@@ -3,7 +3,7 @@
 import { DollarSign, Target, ArrowRight } from 'lucide-react';
 import { Section, MotionWrapper, CTAButton } from './ui';
 
-type Variant = 'default' | 'sofia';
+type Variant = 'default' | 'sofia' | 'trafego';
 
 const COPY = {
   default: {
@@ -29,6 +29,19 @@ const COPY = {
     ),
     ctaTitle: 'Quer a Sofia trabalhando na sua clínica?',
     ctaSubtitle: 'Agende uma avaliação e descubra como implementar a Sofia IA™ na sua realidade',
+  },
+  trafego: {
+    bodyText: (
+      <>
+        Investir em anúncios sem um sistema de conversão é como encher um balde furado.
+        O lead chega, mas ninguém responde a tempo. Ele esfria, vai pro concorrente, e você
+        paga a conta. Com o <strong>Sistema Hawki</strong>, cada real investido em tráfego tem um
+        caminho claro até a{' '}
+        <strong style={{ color: '#655cb1' }}>consulta agendada na sua agenda</strong>.
+      </>
+    ),
+    ctaTitle: 'Quer parar de perder dinheiro com anúncios que não convertem?',
+    ctaSubtitle: 'Agende sua avaliação e veja como funciona o sistema completo de captação e conversão',
   },
 };
 

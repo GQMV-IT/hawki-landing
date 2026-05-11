@@ -3,7 +3,7 @@
 import { Award, Briefcase, Megaphone, Lightbulb } from 'lucide-react';
 import { Section, MotionWrapper } from './ui';
 
-type Variant = 'default' | 'sofia';
+type Variant = 'default' | 'sofia' | 'trafego';
 
 const finalStatement = {
   default: (
@@ -24,6 +24,17 @@ const finalStatement = {
       , Pietro Hummel vai te guiar no caminho para implementar a{' '}
       <span className="font-bold">Sofia IA™</span> e transformar o atendimento e o crescimento da
       sua clínica.
+    </>
+  ),
+  trafego: (
+    <>
+      <span className="font-bold" style={{ color: '#655cb1' }}>
+        Especialista em tráfego pago e IA para clínicas
+      </span>
+      , Pietro Hummel já ajudou dezenas de profissionais da saúde a transformarem anúncios
+      em consultas agendadas. Com o{' '}
+      <span className="font-bold">Sistema Hawki</span>, ele vai montar a estratégia completa
+      para a sua clínica crescer com previsibilidade.
     </>
   ),
 };
