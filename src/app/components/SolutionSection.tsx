@@ -85,11 +85,6 @@ const COPY = {
         description: 'Campanhas criadas com base no perfil real dos seus pacientes ideais. Nada genérico, nada jogado.',
       },
       {
-        icon: TrendingUp,
-        title: 'Leads chegando todos os dias no seu WhatsApp',
-        description: 'Fluxo constante de pessoas interessadas nos seus serviços, prontas para agendar.',
-      },
-      {
         icon: Bot,
         title: 'Sofia IA respondendo cada lead em segundos',
         description: 'Enquanto outros demoram horas para responder, a Sofia já está qualificando e conduzindo o paciente para o agendamento.',

@@ -29,36 +29,76 @@ const finalStatement = {
   trafego: (
     <>
       <span className="font-bold" style={{ color: '#655cb1' }}>
-        Especialista em tráfego pago e IA para clínicas
+        Especialista em tráfego pago e IA para clínicas odontológicas
       </span>
-      , Pietro Hummel já ajudou dezenas de profissionais da saúde a transformarem anúncios
-      em consultas agendadas. Com o{' '}
+      , Pietro Hummel construiu sistemas de captação e conversão focados em dentistas,
+      conectando tráfego pago com atendimento inteligente para gerar agendamentos reais. Com o{' '}
       <span className="font-bold">Sistema Hawki</span>, ele vai montar a estratégia completa
       para a sua clínica crescer com previsibilidade.
     </>
   ),
 };
 
-const credentials = [
-  {
-    icon: Briefcase,
-    text: 'Especialista em IA para Clínicas e Automação de Atendimento',
-  },
-  {
-    icon: Award,
-    text: 'Criador de estratégias avançadas que já ajudaram dezenas de clínicas a saírem da dependência de indicações',
-  },
-  {
-    icon: Lightbulb,
-    text: 'Fundador de soluções inovadoras que integram IA à captação, conversão e escalabilidade de clínicas',
-  },
-  {
-    icon: Megaphone,
-    text: 'Consultor e mentor, ajudando clínicas a dominarem IA para gerar crescimento previsível',
-  },
-];
+const CREDENTIALS = {
+  default: [
+    {
+      icon: Briefcase,
+      text: 'Especialista em IA para Clínicas e Automação de Atendimento',
+    },
+    {
+      icon: Award,
+      text: 'Criador de estratégias avançadas que já ajudaram dezenas de clínicas a saírem da dependência de indicações',
+    },
+    {
+      icon: Lightbulb,
+      text: 'Fundador de soluções inovadoras que integram IA à captação, conversão e escalabilidade de clínicas',
+    },
+    {
+      icon: Megaphone,
+      text: 'Consultor e mentor, ajudando clínicas a dominarem IA para gerar crescimento previsível',
+    },
+  ],
+  sofia: [
+    {
+      icon: Briefcase,
+      text: 'Especialista em IA para Clínicas e Automação de Atendimento',
+    },
+    {
+      icon: Award,
+      text: 'Criador de estratégias avançadas que já ajudaram dezenas de clínicas a saírem da dependência de indicações',
+    },
+    {
+      icon: Lightbulb,
+      text: 'Fundador de soluções inovadoras que integram IA à captação, conversão e escalabilidade de clínicas',
+    },
+    {
+      icon: Megaphone,
+      text: 'Consultor e mentor, ajudando clínicas a dominarem IA para gerar crescimento previsível',
+    },
+  ],
+  trafego: [
+    {
+      icon: Briefcase,
+      text: 'Especialista em tráfego pago e IA para clínicas odontológicas',
+    },
+    {
+      icon: Award,
+      text: 'Criador de estratégias de captação que conectam anúncios a agendamentos reais para dentistas',
+    },
+    {
+      icon: Lightbulb,
+      text: 'Fundador do Sistema Hawki, que integra tráfego pago com atendimento inteligente via IA',
+    },
+    {
+      icon: Megaphone,
+      text: 'Consultor e mentor, ajudando dentistas a crescerem com previsibilidade e sem depender de indicações',
+    },
+  ],
+};
 
 export default function AboutPietro({ variant = 'default' }: { variant?: Variant }) {
+  const credentials = CREDENTIALS[variant];
+
   return (
     <Section className="bg-gradient-to-br from-gray-50 to-white">
       <MotionWrapper>

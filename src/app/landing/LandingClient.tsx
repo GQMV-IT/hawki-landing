@@ -104,6 +104,7 @@ const LAYOUTS: Record<Variant, SectionId[]> = {
     'funnel-problem',
     'solution',
     'how-it-works',
+    'cta-mid',
     'financial',
     'comparison',
     'about',
@@ -165,10 +166,15 @@ const CTA_COPY: Record<Variant, { mid?: CtaConfig; final: CtaConfig }> = {
     },
   },
   'trafego-sofia': {
+    mid: {
+      title: 'Quer ver como isso funciona na sua clínica?',
+      subtitle: 'Agende uma avaliação gratuita e a gente monta a estratégia junto com você',
+      buttonText: 'Agendar avaliação gratuita',
+    },
     final: {
-      title: 'Pronto pra ter um funil que realmente converte?',
+      title: 'Enquanto você avalia, seus concorrentes já estão captando os mesmos pacientes.',
       subtitle:
-        'Agende sua avaliação gratuita e veja como o Sistema Hawki transforma anúncios em consultas agendadas.',
+        'Agende sua avaliação gratuita. Em 30 minutos a gente te mostra onde seu funil está perdendo pacientes e como resolver.',
       buttonText: 'Quero um funil que converte de verdade',
     },
   },
