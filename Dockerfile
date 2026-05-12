@@ -1,6 +1,6 @@
 # Stage 1: Dependencies
 FROM node:22-alpine AS deps
-RUN corepack enable && corepack prepare pnpm@latest --activate
+RUN corepack enable
 WORKDIR /app
 
 # Copy package files
@@ -11,7 +11,7 @@ RUN pnpm install --frozen-lockfile
 
 # Stage 2: Builder
 FROM node:22-alpine AS builder
-RUN corepack enable && corepack prepare pnpm@latest --activate
+RUN corepack enable
 WORKDIR /app
 
 # Copy dependencies from deps stage
